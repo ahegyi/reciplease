@@ -1,8 +1,8 @@
 class RecipesController < ApplicationController
-  before_filter :authenticate_user!, :except => [:index, :show]
+  before_filter :authenticate_user!
 
   def index
-    @recipes = Recipe.all
+    @recipes = current_user.recipes
   end
 
   def show
@@ -10,7 +10,12 @@ class RecipesController < ApplicationController
   end
 
   def edit
-    @recipe = Recipe.find(params[:id])
+    recipe = Recipe.find(params[:id])
+    if current_user.recipes.include? recipe
+      @recipe = recipe
+    else
+      redirect_to recipes_url
+    end
   end
 
   def new
@@ -23,6 +28,8 @@ class RecipesController < ApplicationController
 
   def create
     @recipe = Recipe.new(params[:recipe])
+    # attach to the current user
+    @recipe.user = current_user
 
     respond_to do |format|
       if @recipe.save
@@ -52,11 +59,15 @@ class RecipesController < ApplicationController
   # DELETE /recipes/1
   # DELETE /recipes/1.json
   def destroy
-    @recipe = Recipe.find(params[:id])
-    @recipe.destroy
-    respond_to do |format|
-      format.html { redirect_to recipes_url }
-      format.json { head :no_content }
+    recipe = Recipe.find(params[:id])
+    if current_user.recipes.include? recipe
+      recipe.destroy
+      respond_to do |format|
+        format.html { redirect_to recipes_url }
+        format.json { head :no_content }
+      end
+    else
+      redirect_to recipes_url
     end
   end
 
