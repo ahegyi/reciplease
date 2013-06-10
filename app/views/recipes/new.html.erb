@@ -16,12 +16,12 @@
     <legend>Basic Info</legend>
     <div>
       <%= f.label :name %>
-      <%= f.text_field :name %>
+      <%= f.text_field :name, :placeholder => "e.g. Alice Water's Banana Bread" %>
     </div>
 
     <div>
       <%= f.label :author %>
-      <%= f.text_field :author %>
+      <%= f.text_field :author, :placeholder => "e.g. Mom, Alice Waters, etc." %>
     </div>
 
     <div>
@@ -31,7 +31,15 @@
 
     <div>
       <%= f.label :description, "Short Description" %>
-      <%= f.text_area :description %>
+      <%= f.text_area :description, :placeholder => "e.g. The best banana bread EVAR!", :size => "24x3" %>
+    </div>
+  </fieldset>
+
+  <fieldset>
+    <legend>Ingredients</legend>
+    <div>
+      <%= f.label :ingredients_text, "Ingredients" %>
+      <%= f.text_area :ingredients_text, :placeholder => "e.g. 3-4 ripe bananas, mashed; 1 egg; 3/4 cup sugar; etc.", :size => "40x15" %>
     </div>
   </fieldset>
 
@@ -39,7 +47,7 @@
     <legend>Recipe Steps</legend>
     <div>
       <%= f.label :instructions %>
-      <%= f.text_area :instructions %>
+      <%= f.text_area :instructions, :placeholder => "e.g. Preheat the oven to 350 degrees. Mix in the ingredients in a bowl. ... etc.", :size => "40x15" %>
     </div>
   </fieldset>
 

@@ -1,9 +1,9 @@
 <h1>Recipes#show</h1>
 <p>Find me in app/views/recipes/show.html.erb</p>
 
-<h3>Recipe</h3>
-<p>Name: <%= @recipe.name.nil? ? "Nil!" : @recipe.name %></p>
+<h3><%= @recipe.name.nil? ? "Nil!" : @recipe.name %></h3>
 <p>Author: <%= @recipe.author.nil? ? "Nil!" : @recipe.author %></p>
 <p>Published On: <%= @recipe.published_on.nil? ? "Nil!" : @recipe.published_on %></p>
-<p>Description: <%= @recipe.description.nil? ? "Nil!" : @recipe.description %></p>
-<p>Instructions: <%= @recipe.instructions.nil? ? "Nil!" : @recipe.instructions %></p>
+<p>Short Description: <%= @recipe.description.nil? ? "Nil!" : simple_format(@recipe.description) %></p>
+<p>Ingredients: <%= @recipe.ingredients_text.nil? ? "Nil!" : simple_format(@recipe.ingredients_text) %></p>
+<p>Instructions: <%= @recipe.instructions.nil? ? "Nil!" : simple_format(@recipe.instructions) %></p>
