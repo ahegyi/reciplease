@@ -1,2 +1,14 @@
 <h1>Recipes#index</h1>
 <p>Find me in app/views/recipes/index.html.erb</p>
+
+<h3>Recipes</h3>
+<ul class="recipes">
+  <% @recipes.each do |recipe| %>
+    <li>
+      <b><%= link_to recipe.name, recipe %></b>
+      | <%= recipe.author %> | <%= recipe.published_on %>
+    </li>
+  <% end %>
+</ul>
+
+<%= link_to "New Recipe", new_recipe_path %>

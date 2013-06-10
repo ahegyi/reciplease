@@ -1,0 +1,48 @@
+<h1>Recipes#new</h1>
+<p>Find me in app/views/recipes/new.html.erb</p>
+
+<% if @recipe.errors.any? %>
+  <div id="error_explanation">
+    <ul>
+    <% @recipe.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+    </ul>
+  </div>
+<% end %>
+
+<%= form_for @recipe do |f| %>
+  <fieldset>
+    <legend>Basic Info</legend>
+    <div>
+      <%= f.label :name %>
+      <%= f.text_field :name %>
+    </div>
+
+    <div>
+      <%= f.label :author %>
+      <%= f.text_field :author %>
+    </div>
+
+    <div>
+      <%= f.label :published_on, "Date Published" %>
+      <%= f.text_field :published_on, :type => "date" %>
+    </div>
+
+    <div>
+      <%= f.label :description, "Short Description" %>
+      <%= f.text_area :description %>
+    </div>
+  </fieldset>
+
+  <fieldset>
+    <legend>Recipe Steps</legend>
+    <div>
+      <%= f.label :instructions %>
+      <%= f.text_area :instructions %>
+    </div>
+  </fieldset>
+
+  <div><%= f.submit "Add Recipe" %></div>
+
+<% end %>
