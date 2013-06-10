@@ -1,5 +1,5 @@
 class HomeController < ApplicationController
   def index
-    @users = User.all
+    @recipes = Recipe.order("created_at DESC").limit(10)
   end
 end

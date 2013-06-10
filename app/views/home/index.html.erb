@@ -1,4 +1,3 @@
-<h3>Home</h3>
-<% @users.each do |user| %>
-  <p>User: <%=link_to user.name, user %></p>
-<% end %>
+<h3>Recently Created Recipes</h3>
+
+<p><%= @recipes.map(&:name).join(", ") %></p>
