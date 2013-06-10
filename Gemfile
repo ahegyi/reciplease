@@ -3,6 +3,7 @@ gem 'rails', '3.2.13'
 gem 'sqlite3'
 
 gem 'ingreedy'
+gem 'carrierwave'
 
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'
