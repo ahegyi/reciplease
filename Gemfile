@@ -4,6 +4,7 @@ gem 'sqlite3'
 
 gem 'ingreedy'
 gem 'carrierwave'
+gem 'fog'
 
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'
