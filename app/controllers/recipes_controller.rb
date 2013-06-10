@@ -14,7 +14,11 @@ class RecipesController < ApplicationController
   end
 
   def new
-    @recipe = Recipe.new
+    if !params[:recipe].nil? && !params[:recipe].empty?
+      @recipe = Recipe.new(params[:recipe])
+    else
+      @recipe = Recipe.new
+    end
   end
 
   def create
