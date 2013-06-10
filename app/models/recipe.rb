@@ -3,9 +3,10 @@ require 'ingreedy'
 class Recipe < ActiveRecord::Base
   attr_accessible :author, :description, :instructions, :name, :published_on, :ingredients_text
 
-  validates :name, :instructions, :ingredients_text, presence: true
+  validates :name, :instructions, :ingredients_text, :user, presence: true
 
   has_many :ingredients
+  belongs_to :user
 
   def parse_ingredient_text(text_to_parse)
     items = text_to_parse.split(/\s*\n+\s*/)
