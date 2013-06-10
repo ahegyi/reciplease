@@ -2,10 +2,10 @@
 
 FactoryGirl.define do
   factory :recipe do
-    name "MyString"
-    author "MyString"
+    name "Foo Fi Fo Fum Recipe Text"
+    author "Aron Hegyi"
     published_on "2013-06-09"
-    description "MyText"
-    instructions "MyText"
+    description "Take this string and shove it. <b>Bold</b>"
+    instructions "Recipe instructions."
   end
 end
