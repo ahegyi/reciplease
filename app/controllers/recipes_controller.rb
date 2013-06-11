@@ -39,12 +39,6 @@ class RecipesController < ApplicationController
 
     respond_to do |format|
       if @recipe.save
-
-        if @recipe.document.blank?
-          # manual entry. parse it out into Ingredients
-          @recipe.add_ingredients_from_self
-        end
-
         format.html do
           redirect_to @recipe, notice: "<b>#{@recipe.name}</b> has been added!".html_safe
         end
