@@ -6,4 +6,6 @@ CarrierWave.configure do |config|
     :region                 => ENV['AWS_REGION']   # optional, defaults to 'us-east-1'
   }
   config.fog_directory  = ENV['AWS_S3_BUCKET']   # required
+  # this is secure by default
+  config.fog_use_ssl_for_aws = false
 end
