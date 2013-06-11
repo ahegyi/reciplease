@@ -8,6 +8,8 @@ class Recipe < ActiveRecord::Base
   has_many :ingredients
   belongs_to :user
 
+  mount_uploader :document, RecipeDocumentUploader
+
   def parse_ingredient_text(text_to_parse)
     items = text_to_parse.split(/\s*\n+\s*/)
     ingredients = Array.new
