@@ -11,7 +11,7 @@
   </div>
 <% end %>
 
-<%= form_for @recipe do |f| %>
+<%= form_for @recipe, :multipart => true do |f| %>
   <fieldset>
     <legend>Basic Info</legend>
     <div>
@@ -36,15 +36,18 @@
   </fieldset>
 
   <fieldset>
-    <legend>Ingredients</legend>
+    <legend>Take a Photo of a Recipe</legend>
     <div>
-      <%= f.label :ingredients_text, "Ingredients" %>
-      <%= f.text_area :ingredients_text, :placeholder => "e.g. 3-4 ripe bananas, mashed; 1 egg; 3/4 cup sugar; etc.", :size => "40x15" %>
+      <%= f.file_field :document %>
     </div>
   </fieldset>
 
   <fieldset>
-    <legend>Recipe Steps</legend>
+    <legend>Ingredients &amp; Recipe Steps</legend>
+    <div>
+      <%= f.label :ingredients_text, "Ingredients" %>
+      <%= f.text_area :ingredients_text, :placeholder => "e.g. 3-4 ripe bananas, mashed; 1 egg; 3/4 cup sugar; etc.", :size => "40x15" %>
+    </div>
     <div>
       <%= f.label :instructions %>
       <%= f.text_area :instructions, :placeholder => "e.g. Preheat the oven to 350 degrees. Mix in the ingredients in a bowl. ... etc.", :size => "40x15" %>

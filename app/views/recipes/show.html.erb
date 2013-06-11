@@ -11,6 +11,11 @@
 
 <p>Instructions: <%= @recipe.instructions.nil? ? "Nil!" : simple_format(@recipe.instructions) %></p>
 
+<p>Recipe Document: <%= @recipe.document.nil? ? "Nil!" : link_to(@recipe.document.url, @recipe.document.url) %>
+</p>
+
+Protocol: <%= request.protocol %>
+
 <div>
   <%= link_to 'Delete this recipe', @recipe, method: :delete, data: { confirm: 'Are you sure?' } %>
 </div>

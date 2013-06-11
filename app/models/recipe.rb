@@ -6,16 +6,16 @@ class Recipe < ActiveRecord::Base
   mount_uploader :document, RecipeDocumentUploader
 
   validates :name, :user, presence: true
-  validate :manual_or_document_creation
+  # validate :manual_or_document_creation
 
-  def manual_or_document_creation
-    if !document.present?
-      # no document present, so was created manually
-      # => ingredients_text and instructions can't be blank
-      errors.add(:ingredients_text, "Ingredients can't be blank") if ingredients_text.blank?
-      errors.add(:instructions, "Instructions can't be blank") if instructions.blank?
-    end
-  end
+  # def manual_or_document_creation
+  #   if !document.present?
+  #     # no document present, so was created manually
+  #     # => ingredients_text and instructions can't be blank
+  #     errors.add(:ingredients_text, "Ingredients can't be blank") if ingredients_text.blank?
+  #     errors.add(:instructions, "Instructions can't be blank") if instructions.blank?
+  #   end
+  # end
 
   has_many :ingredients
   belongs_to :user
@@ -63,10 +63,10 @@ class Recipe < ActiveRecord::Base
     if @document_changed
       # run ocr stuff
       # placeholder: just set ingredients_text and instructions
-      ingredients_text = "Created from document\n1 egg\n5 cups sugar\n12 sticks butter"
-      add_ingredients_from_self
-      instructions = "Created from document. Here are the instructions!"
-      save!
+      @ingredients_text = "Created from document\n1 egg\n5 cups sugar\n12 sticks butter"
+      # add_ingredients_from_self
+      @instructions = "Created from document. Here are the instructions!"
+      # save!
       @document_changed = false
     end
   end
