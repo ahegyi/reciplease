@@ -50,4 +50,25 @@ class Recipe < ActiveRecord::Base
     end
   end
 
+
+  before_save :capture_document_changed
+
+  after_save :parse_recipe_from_document
+
+  def capture_document_changed
+    @document_changed = document_changed?
+  end
+
+  def parse_recipe_from_document
+    if @document_changed
+      # run ocr stuff
+      # placeholder: just set ingredients_text and instructions
+      ingredients_text = "Created from document\n1 egg\n5 cups sugar\n12 sticks butter"
+      add_ingredients_from_self
+      instructions = "Created from document. Here are the instructions!"
+      save!
+      @document_changed = false
+    end
+  end
+
 end
