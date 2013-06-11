@@ -3,12 +3,24 @@ require 'ingreedy'
 class Recipe < ActiveRecord::Base
   attr_accessible :author, :description, :instructions, :name, :published_on, :ingredients_text
 
-  validates :name, :instructions, :ingredients_text, :user, presence: true
+  mount_uploader :document, RecipeDocumentUploader
+
+  validates :name, :user, presence: true
+  validate :manual_or_document_creation
+
+  def manual_or_document_creation
+    if !document.present?
+      # no document present, so was created manually
+      # => ingredients_text and instructions can't be blank
+      errors.add(:ingredients_text, "Ingredients can't be blank") if ingredients_text.blank?
+      errors.add(:instructions, "Instructions can't be blank") if instructions.blank?
+    end
+  end
 
   has_many :ingredients
   belongs_to :user
 
-  mount_uploader :document, RecipeDocumentUploader
+
 
   def parse_ingredient_text(text_to_parse)
     items = text_to_parse.split(/\s*\n+\s*/)
