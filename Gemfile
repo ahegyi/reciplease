@@ -5,6 +5,7 @@ gem 'sqlite3'
 gem 'ingreedy'
 gem 'carrierwave', :git => 'https://github.com/carrierwaveuploader/carrierwave.git'
 gem 'fog'
+gem 'rmagick'
 
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'
