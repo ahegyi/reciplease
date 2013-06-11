@@ -3,7 +3,7 @@
 class RecipeDocumentUploader < CarrierWave::Uploader::Base
 
   # Include RMagick or MiniMagick support:
-  # include CarrierWave::RMagick
+  include CarrierWave::RMagick
   # include CarrierWave::MiniMagick
 
   # Include the Sprockets helpers for Rails 3.1+ asset pipeline compatibility:
@@ -39,10 +39,11 @@ class RecipeDocumentUploader < CarrierWave::Uploader::Base
 
   process :set_content_type
 
-  # Create different versions of your uploaded files:
-  # version :thumb do
-  #   process :scale => [50, 50]
-  # end
+  # Create different versions of uploaded files
+  version :thumb do
+    # built in support with RMagick for resize_to_fill processor
+    process :resize_to_fill => [200,200]
+  end
 
   # Add a white list of extensions which are allowed to be uploaded.
   # For images you might use something like this:

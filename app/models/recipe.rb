@@ -1,7 +1,15 @@
 require 'ingreedy'
 
 class Recipe < ActiveRecord::Base
-  attr_accessible :author, :description, :instructions, :name, :published_on, :ingredients_text
+  attr_accessible(
+    :author,
+    :description,
+    :instructions,
+    :name,
+    :published_on,
+    :ingredients_text,
+    :document_cache
+  )
 
   mount_uploader :document, RecipeDocumentUploader
 

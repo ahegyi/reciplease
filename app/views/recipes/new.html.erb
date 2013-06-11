@@ -38,7 +38,15 @@
   <fieldset>
     <legend>Take a Photo of a Recipe</legend>
     <div>
-      <%= f.file_field :document %>
+      <%= image_tag(@recipe.document.thumb.url) if @recipe.document? %>
+      <div id="file-name"><%= @recipe.document? ? @recipe.document.identifier : "" %></div>
+      <div>
+        <%= f.file_field :document, :id => "file-input" %>
+        <button id="file-button">
+          <%= @recipe.document? ? "Choose a different photo" : "Choose image/take photo" %>
+        </button>
+        <%= f.hidden_field :document_cache %>
+      </div>
     </div>
   </fieldset>
 
