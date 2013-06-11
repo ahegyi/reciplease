@@ -7,6 +7,9 @@ gem 'carrierwave', :git => 'https://github.com/carrierwaveuploader/carrierwave.g
 gem 'fog'
 gem 'rmagick'
 
+# currently 2.0.0.pre.1
+gem 'resque', :git => 'https://github.com/resque/resque.git'
+
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'
   gem 'coffee-rails', '~> 3.2.1'
