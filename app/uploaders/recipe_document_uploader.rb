@@ -10,9 +10,11 @@ class RecipeDocumentUploader < CarrierWave::Uploader::Base
   # include Sprockets::Helpers::RailsHelper
   # include Sprockets::Helpers::IsolatedHelper
 
+  include CarrierWave::MimeTypes
+
   # Choose what kind of storage to use for this uploader:
-  storage :file
-  # storage :fog
+  # storage :file
+  storage :fog
 
   # Override the directory where uploaded files will be stored.
   # This is a sensible default for uploaders that are meant to be mounted:
@@ -34,6 +36,8 @@ class RecipeDocumentUploader < CarrierWave::Uploader::Base
   # def scale(width, height)
   #   # do something
   # end
+
+  process :set_content_type
 
   # Create different versions of your uploaded files:
   # version :thumb do
