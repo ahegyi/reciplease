@@ -67,22 +67,22 @@ class Recipe < ActiveRecord::Base
 
 
   # these need to be in this order!
-  after_save :update_ingredients_from_document
+  # after_save :async_create_from_document
   after_save :update_ingredients_from_text
 
-  def update_ingredients_from_document
-    # if @ocr_done is not set, this may run in an infinite loop,
-    # as document_changed? will be true after the first run
-    # ('save' at the bottom triggers this method again)
-    if document_changed? && !@ocr_done
-      # run ocr stuff
-      # placeholder: just set ingredients_text and instructions
-      self.ingredients_text = "Created from document\n1 egg\n5 cups sugar\n12 sticks butter"
-      self.instructions = "Created from document. Here are the instructions!"
-      @ocr_done = true
-      save
-    end
-  end
+  # def update_ingredients_from_document
+  #   # if @ocr_done is not set, this may run in an infinite loop,
+  #   # as document_changed? will be true after the first run
+  #   # ('save' at the bottom triggers this method again)
+  #   if document_changed? && !@ocr_done
+  #     # run ocr stuff
+  #     # placeholder: just set ingredients_text and instructions
+  #     self.ingredients_text = "Created from document\n1 egg\n5 cups sugar\n12 sticks butter"
+  #     self.instructions = "Created from document. Here are the instructions!"
+  #     @ocr_done = true
+  #     save
+  #   end
+  # end
 
   def update_ingredients_from_text
     # when creating a new instance, a form could send an empty string
@@ -92,6 +92,20 @@ class Recipe < ActiveRecord::Base
       # manual ingredient entry. parse it out into Ingredient objects
       add_ingredients_from_self
     end
+  end
+
+  # this should only be called from async_create_from_document
+  # or processing will probably hang
+  # def create_from_document
+  #   if !@ocr_done
+  #     self.instructions = "Created from #{self.document.sanitized_file.filename}"
+  #     @ocr_done = true
+  #     save
+  #   end
+  # end
+
+  def async_create_from_document
+    Resque.enqueue(OCRProcessor, self.id)
   end
 
 end

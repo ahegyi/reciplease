@@ -14,7 +14,9 @@
 <p>Recipe Document: <%= @recipe.document.nil? ? "Nil!" : link_to(@recipe.document.url, @recipe.document.url) %>
 </p>
 
-Protocol: <%= request.protocol %>
+<p>OCR Raw Text: <%= @recipe.ocr_raw_text.nil? ? "Nil!" : simple_format(@recipe.ocr_raw_text) %></p>
+<p>OCR Processed: <%= @recipe.ocr_processed ? "Processed!" : "Not Processed" %></p>
+<p>Source: <%= @recipe.source.nil? ? "Nil!" : simple_format(@recipe.source) %></p>
 
 <div>
   <%= link_to 'Delete this recipe', @recipe, method: :delete, data: { confirm: 'Are you sure?' } %>

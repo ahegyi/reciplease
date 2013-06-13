@@ -39,6 +39,12 @@ class RecipesController < ApplicationController
 
     respond_to do |format|
       if @recipe.save
+
+        # asynchronously fill out recipe object from the document
+        if @recipe.document.present?
+          @recipe.async_create_from_document
+        end
+
         format.html do
           redirect_to @recipe, notice: "<b>#{@recipe.name}</b> has been added!".html_safe
         end
