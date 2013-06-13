@@ -7,6 +7,7 @@ gem 'carrierwave', :git => 'https://github.com/carrierwaveuploader/carrierwave.g
 gem 'fog'
 gem 'rmagick'
 
+gem 'redis'
 gem 'resque', '~> 1.24.1'
 gem 'ocrsdk'
 
