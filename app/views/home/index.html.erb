@@ -1,3 +1,6 @@
 <h3>Recently Created Recipes</h3>
-
-<p><%= @recipes.map(&:name).join(", ") %></p>
+<% if @recipes.nil? %>
+  <p>None! Save a recipe or two.</p>
+<% else %>
+  <p><%= @recipes.map(&:name).join(", ") %></p>
+<% end %>

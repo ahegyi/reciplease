@@ -1,11 +1,15 @@
 <h3>Recipes</h3>
-<ul class="recipes">
-  <% @recipes.each do |recipe| %>
-    <li>
-      <b><%= link_to recipe.name, recipe %></b>
-      | <%= recipe.author %> | <%= recipe.published_on %>
-    </li>
-  <% end %>
-</ul>
+<% if @recipes.nil? %>
+  <h4>You don't have any recipes yet! Why don't you <%= link_to "create one now?", new_recipe_path %></h4>
+<% else %>
+  <ul class="recipes">
+    <% @recipes.each do |recipe| %>
+      <li>
+        <b><%= link_to recipe.name, recipe %></b>
+        | <%= recipe.author %> | <%= recipe.published_on %>
+      </li>
+    <% end %>
+  </ul>
+<% end %>
 
 <%= link_to "New Recipe", new_recipe_path %>
