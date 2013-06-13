@@ -144,6 +144,7 @@ GEM
       hashery (~> 2.0)
       ruby-rc4
       ttfunk
+    pg (0.15.1)
     polyglot (0.3.3)
     pry (0.9.12.1)
       coderay (~> 1.0.5)
@@ -269,6 +270,7 @@ DEPENDENCIES
   ingreedy
   jquery-rails
   ocrsdk
+  pg
   pry-debugger
   pry-rails
   rails (= 3.2.13)

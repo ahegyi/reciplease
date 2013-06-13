@@ -1,6 +1,8 @@
 source 'https://rubygems.org'
 gem 'rails', '3.2.13'
-gem 'sqlite3'
+
+gem 'sqlite3', :group => :development
+gem 'pg', :group => :production
 
 gem 'ingreedy'
 gem 'carrierwave', :git => 'https://github.com/carrierwaveuploader/carrierwave.git'
