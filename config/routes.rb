@@ -1,4 +1,8 @@
+require 'resque/server'
+
 Reciplease::Application.routes.draw do
+  # see config.ru for authentication setup
+  mount Resque::Server.new, :at => "/resque"
 
   authenticated :user do
     root :to => 'recipes#index'
