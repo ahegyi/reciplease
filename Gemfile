@@ -8,6 +8,7 @@ gem 'fog'
 gem 'rmagick'
 
 gem 'resque', '~> 1.24.1'
+gem 'ocrsdk'
 
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'
