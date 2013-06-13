@@ -8,7 +8,9 @@ class Recipe < ActiveRecord::Base
     :name,
     :published_on,
     :ingredients_text,
-    :document_cache
+    :document_cache,
+    :ocr_raw_text,
+    :source
   )
 
   mount_uploader :document, RecipeDocumentUploader
