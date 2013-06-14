@@ -15,71 +15,77 @@
   <li><a href="#write_your_own" data-toggle="tab">Write Your Own</a></li>
 </ul>
 
-<%= form_for @recipe, :multipart => true do |f| %>
-
 <div class="tab-content">
 
   <div class="tab-pane active" id="take_a_photo">
-    <fieldset>
-      <legend>Take a Photo of a Printed Recipe</legend>
-      <div>
-        <%= f.label :name %>
-        <%= f.text_field :name, :placeholder => "e.g. Alice Water's Banana Bread" %>
-      </div>
+    <%= form_for @recipe, :multipart => true do |f| %>
 
-      <div>
-        <%= image_tag(@recipe.document.thumb.url) if @recipe.document? %>
-        <div id="file-name"><%= @recipe.document? ? @recipe.document.identifier : "" %></div>
+      <fieldset>
+        <legend>Take a Photo of a Printed Recipe</legend>
         <div>
-          <%= f.file_field :document, :id => "file-input" %>
-          <button id="file-button" class="btn">
-            <%= @recipe.document? ? "Choose a different photo" : "Choose image/take photo" %>
-          </button>
-          <%= f.hidden_field :document_cache %>
+          <%= f.label :name %>
+          <%= f.text_field :name, :placeholder => "e.g. Alice Water's Banana Bread" %>
         </div>
-      </div>
-    </fieldset>
+
+        <div>
+          <%= image_tag(@recipe.document.thumb.url) if @recipe.document? %>
+          <div id="file-name"><%= @recipe.document? ? @recipe.document.identifier : "" %></div>
+          <div>
+            <%= f.file_field :document, :id => "file-input" %>
+            <button id="file-button" class="btn">
+              <%= @recipe.document? ? "Choose a different photo" : "Choose image/take photo" %>
+            </button>
+            <%= f.hidden_field :document_cache %>
+          </div>
+        </div>
+      </fieldset>
+
+      <div style="margin-top:20px;"><%= f.submit "Add Recipe", :class => "btn btn-primary" %></div>
+
+    <% end %>
   </div>
 
   <div class="tab-pane" id="write_your_own">
-    <fieldset>
-      <legend>Basic Info</legend>
-      <div>
-        <%= f.label :name %>
-        <%= f.text_field :name, :placeholder => "e.g. Alice Water's Banana Bread" %>
-      </div>
+    <%= form_for @recipe do |f| %>
 
-      <div>
-        <%= f.label :author %>
-        <%= f.text_field :author, :placeholder => "e.g. Mom, Alice Waters, etc." %>
-      </div>
+      <fieldset>
+        <legend>Basic Info</legend>
+        <div>
+          <%= f.label :name %>
+          <%= f.text_field :name, :placeholder => "e.g. Alice Water's Banana Bread" %>
+        </div>
 
-      <div>
-        <%= f.label :published_on, "Date Published" %>
-        <%= f.text_field :published_on, :type => "date" %>
-      </div>
+        <div>
+          <%= f.label :author %>
+          <%= f.text_field :author, :placeholder => "e.g. Mom, Alice Waters, etc." %>
+        </div>
 
-      <div>
-        <%= f.label :description, "Short Description" %>
-        <%= f.text_area :description, :placeholder => "e.g. The best banana bread EVAR!", :size => "24x3" %>
-      </div>
-    </fieldset>
+        <div>
+          <%= f.label :published_on, "Date Published" %>
+          <%= f.text_field :published_on, :type => "date" %>
+        </div>
 
-    <fieldset>
-      <legend>Ingredients &amp; Recipe Steps</legend>
-      <div>
-        <%= f.label :ingredients_text, "Ingredients" %>
-        <%= f.text_area :ingredients_text, :placeholder => "e.g. 3-4 ripe bananas, mashed; 1 egg; 3/4 cup sugar; etc.", :size => "40x15" %>
-      </div>
-      <div>
-        <%= f.label :instructions %>
-        <%= f.text_area :instructions, :placeholder => "e.g. Preheat the oven to 350 degrees. Mix in the ingredients in a bowl. ... etc.", :size => "40x15" %>
-      </div>
-    </fieldset>
+        <div>
+          <%= f.label :description, "Short Description" %>
+          <%= f.text_area :description, :placeholder => "e.g. The best banana bread EVAR!", :size => "24x3" %>
+        </div>
+      </fieldset>
 
+      <fieldset>
+        <legend>Ingredients &amp; Recipe Steps</legend>
+        <div>
+          <%= f.label :ingredients_text, "Ingredients" %>
+          <%= f.text_area :ingredients_text, :placeholder => "e.g. 3-4 ripe bananas, mashed; 1 egg; 3/4 cup sugar; etc.", :size => "40x15" %>
+        </div>
+        <div>
+          <%= f.label :instructions %>
+          <%= f.text_area :instructions, :placeholder => "e.g. Preheat the oven to 350 degrees. Mix in the ingredients in a bowl. ... etc.", :size => "40x15" %>
+        </div>
+      </fieldset>
+
+      <div style="margin-top:20px;"><%= f.submit "Add Recipe", :class => "btn btn-primary" %></div>
+
+    <% end %>
   </div>
+
 </div>
-
-<div style="margin-top:20px;"><%= f.submit "Add Recipe", :class => "btn btn-primary" %></div>
-
-<% end %>
