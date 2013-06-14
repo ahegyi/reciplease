@@ -61,8 +61,22 @@ class RecipesController < ApplicationController
     end
   end
 
+  # PUT /recipes/:id
   def update
+    @recipe = Recipe.find(params[:id])
+
+    respond_to do |format|
+      if @recipe.update_attributes(params[:recipe].except(:document))
+        format.html { redirect_to @recipe, notice: "<b>#{@recipe.name}</b> has been updated!".html_safe }
+        format.json { render json: @recipe }
+      else
+        format.html { render action: "edit" }
+        format.json { render json: @recipe.errors, status: :unprocessable_entity }
+      end
+    end
+
   end
+
 
   # DELETE /recipes/1
   # DELETE /recipes/1.json

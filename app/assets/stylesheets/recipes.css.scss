@@ -72,6 +72,32 @@ ul.recipes a {
   padding-left: 3%;
 }
 
+.recipe-container .info-box {
+  width: 80%;
+  margin: 0 auto;
+  padding: 10px;
+  text-align: center;
+  color: #95dcf8;
+  background: #2195d6;
+  font-style: italic;
+  font-size: 24px;
+  line-height: 22px;
+  border-radius: 3px;
+}
+
+.ingredients-instructions textarea {
+  margin: 20px 0px 10px;
+  width: 100%;
+  height: 700px;
+  background: inherit;
+  outline: none;
+  border: none;
+  border-style: none;
+  border-color: transparent;
+  overflow: auto;
+  font-size: 16px;
+}
+
 @media (max-width: 767px) {
   .recipe-basics {
     width: 100%;
@@ -102,3 +128,4 @@ ul.recipes a {
 .recipes ul.nav.nav-tabs {
   margin: 0;
 }
+

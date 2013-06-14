@@ -35,4 +35,35 @@ $(document).ready( function () {
     fileInput.click();
   });
 
+
+
+  var updateRecipe = function (textAreaEl) {
+    var recipeID = $('.recipe-container').attr('data-id');
+    var infoBox = $('.recipe-container .info-box');
+    var rawText = textAreaEl.val();
+    $.ajax({
+      url: "/recipes/" + recipeID,
+      method: "put",
+      data: { "recipe": { "ocr_raw_text": rawText }},
+      dataType: "json",
+      success: function (recipe) {
+        infoBox.slideDown(300);
+        infoBox.text("Recipe updated!");
+        setTimeout(function () { infoBox.slideUp(500); infoBox.text(""); }, 1000);
+      },
+      error: function (e) {
+        infoBox.text("Your recipe did not save.");
+      }
+    });
+  };
+
+  /* save recipe every 10 seconds anyway */
+  // setInterval(function () { updateRecipe($('#ocr-raw-text')); }, 10000);
+
+  /* save ocr raw text on change */
+  $('#ocr-raw-text').on('change', function (event) {
+    event.preventDefault();
+    updateRecipe($(this));
+  });
+
 });
