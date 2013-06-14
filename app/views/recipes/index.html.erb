@@ -1,15 +1,37 @@
-<h3>Recipes</h3>
-<% if @recipes.nil? %>
+<h3 style="float: left;">Recipes</h3>
+<div class="new-recipe-button"><%= link_to "New Recipe", new_recipe_path, :class => "btn btn-primary" %></div>
+
+<br style="clear: both;">
+
+<% if @recipes.empty? %>
   <h4>You don't have any recipes yet! Why don't you <%= link_to "create one now?", new_recipe_path %></h4>
 <% else %>
-  <ul class="recipes">
-    <% @recipes.each do |recipe| %>
-      <li>
-        <b><%= link_to recipe.name, recipe %></b>
-        | <%= recipe.author %> | <%= recipe.published_on %>
-      </li>
+  <% @recipes.each_with_index do |recipe, index| %>
+
+    <% # new row every N * 4 recipes %>
+    <% if (index) % 32 == 0 %>
+      <div class="row-fluid recipe-row">
     <% end %>
-  </ul>
+
+      <% # columns every N recipes %>
+      <% if (index) % 8 == 0 %>
+        <div class="span3">
+      <% end %>
+          <ul class="recipes">
+            <li>
+              <b><%= link_to recipe.name, recipe %></b>
+            </li>
+          </ul>
+      <% if (index - 7) % 8 == 0 || (index + 1) == @recipes.size %>
+        </div>
+      <% end %>
+
+    <% if (index - 31) % 32 == 0 || (index + 1) == @recipes.size %>
+      </div>
+    <% end %>
+
+  <% end %>
+
 <% end %>
 
-<%= link_to "New Recipe", new_recipe_path %>
+<p class="light"><%= @recipes.size %> total recipes</p>

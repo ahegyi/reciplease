@@ -1,3 +1,33 @@
 // Place all the styles related to the Recipes controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+#main {
+  font-size: 17px;
+  line-height: 24px;
+}
+
+.recipe-row {
+  margin-bottom: 20px;
+}
+
+.recipes {
+  list-style-type: none;
+  margin-left: 0;
+  padding-left: 0;
+}
+
+.recipes li {
+  margin-left: 0;
+  padding-left: 0;
+}
+
+.new-recipe-button {
+  float: right;
+  margin: 17px 0;
+}
+
+.light {
+  color: lighten(#333, 40%);
+  font-style: italic;
+}
