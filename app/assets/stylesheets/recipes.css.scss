@@ -85,3 +85,20 @@ ul.recipes a {
     padding-left: 0;
   }
 }
+
+/* NEW */
+
+.recipes .nav-tabs > .active > a,
+.recipes .nav-tabs > .active > a:hover,
+.recipes .nav-tabs > .active > a:focus {
+  background: rgb(248, 252, 245);
+}
+
+.recipes form {
+  background: rgb(248, 252, 245);
+  padding: 10px 20px;
+}
+
+.recipes ul.nav.nav-tabs {
+  margin: 0;
+}
