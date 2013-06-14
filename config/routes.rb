@@ -23,6 +23,9 @@ Reciplease::Application.routes.draw do
 
   root :to => "home#index"
 
+  get "/recipes", :to => "home#index"
+  get "/recipes/:id", :to => "home#index"
+
   devise_for :users
   resources :users
 end
