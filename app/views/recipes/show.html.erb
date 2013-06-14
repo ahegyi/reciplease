@@ -1,23 +1,55 @@
-<h3><%= @recipe.name.nil? ? "Nil!" : @recipe.name %></h3>
-<p>Author: <%= @recipe.author.nil? ? "Nil!" : @recipe.author %></p>
-<p>Published On: <%= @recipe.published_on.nil? ? "Nil!" : @recipe.published_on %></p>
-<p>Short Description: <%= @recipe.description.nil? ? "Nil!" : simple_format(@recipe.description) %></p>
+<div class="recipe-basics">
 
-<div class="ingredients">
-  <% @recipe.ingredients.each do |ingredient| %>
-    <%= ingredient.text %><br>
+  <h3><%= @recipe.name.blank? ? "Unnamed Recipe" : @recipe.name %></h3>
+  <% unless @recipe.author.blank? %>
+    <p>by <%= @recipe.author %></p>
   <% end %>
+
+  <!-- <p>Published On: <%= @recipe.published_on.blank? ? "blank!" : @recipe.published_on %></p> -->
+
+  <% unless @recipe.description.blank? %>
+    <p><%= simple_format(@recipe.description) %></p>
+  <% end %>
+
+  <% unless @recipe.document.blank? %>
+    <%= link_to @recipe.document.url do %>
+      <img src="<%= @recipe.document.url %>">
+    <% end %>
+    <!-- <p><%= link_to "View Original", @recipe.document.url %></p> -->
+  <% end %>
+
 </div>
 
-<p>Instructions: <%= @recipe.instructions.nil? ? "Nil!" : simple_format(@recipe.instructions) %></p>
+<div class="ingredients-instructions">
 
-<p>Recipe Document: <%= @recipe.document.nil? ? "Nil!" : link_to(@recipe.document.url, @recipe.document.url) %>
-</p>
+  <% unless @recipe.ingredients.empty? %>
+    <div class="ingredients">
+      <% @recipe.ingredients.each do |ingredient| %>
+        <%= ingredient.text %><br>
+      <% end %>
+    </div>
+  <% end %>
 
-<p>OCR Raw Text: <%= @recipe.ocr_raw_text.nil? ? "Nil!" : simple_format(@recipe.ocr_raw_text) %></p>
-<p>OCR Processed: <%= @recipe.ocr_processed ? "Processed!" : "Not Processed" %></p>
-<p>Source: <%= @recipe.source.nil? ? "Nil!" : simple_format(@recipe.source) %></p>
+  <% unless @recipe.instructions.blank? %>
+    <p><%= simple_format(@recipe.instructions) %></p>
+  <% end %>
 
-<div>
-  <%= link_to 'Delete this recipe', @recipe, method: :delete, data: { confirm: 'Are you sure?' } %>
+  <% unless @recipe.ocr_raw_text.blank? %>
+    <p><%= simple_format(@recipe.ocr_raw_text) %></p>
+  <% end %>
+
+</div>
+
+<br style="clear: both;">
+
+<div style="margin-top: 20px;">
+  <p class="light">
+    <% if @recipe.source.blank? %>
+      Created <%= time_ago_in_words(@recipe.created_at) + " ago" %>
+    <% else %>
+      <%= @recipe.source + " " + time_ago_in_words(@recipe.created_at) + " ago" %>
+    <% end %>
+    |
+    <%= link_to 'Delete this recipe', @recipe, method: :delete, data: { confirm: 'Are you sure? There is no going back!' } %>
+  </p>
 </div>

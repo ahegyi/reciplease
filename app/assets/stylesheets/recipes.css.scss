@@ -2,6 +2,9 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+// redefined from bootstrap (because it's not accessible here)
+$textColor: #333;
+
 #main {
   font-size: 17px;
   line-height: 24px;
@@ -11,16 +14,31 @@
   margin-bottom: 20px;
 }
 
-.recipes {
+ul.recipes {
   list-style-type: none;
   margin-left: 0;
   padding-left: 0;
 }
 
-.recipes li {
+ul.recipes li {
   margin-left: 0;
   padding-left: 0;
+  margin-bottom: 5px;
+  font-weight: bold;
 }
+
+/*
+ul.recipes a {
+  display: block;
+  padding: 5px;
+  &:hover {
+    background: #32587a; // link color
+    text-decoration: none;
+    color: #e5e7e3; // background color
+    width: 100%;
+  }
+}
+*/
 
 .new-recipe-button {
   float: right;
@@ -28,6 +46,42 @@
 }
 
 .light {
-  color: lighten(#333, 40%);
+  color: lighten($textColor, 40%);
   font-style: italic;
+}
+
+
+/* SHOW */
+.recipe-basics {
+  width: 33%;
+  float: left;
+}
+.recipe-basics p {
+  margin-bottom: 20px;
+}
+
+.ingredients {
+  border-bottom: 1px solid $textColor;
+  padding-bottom: 15px;
+}
+.ingredients-instructions {
+  margin-left: 36%;
+  padding-top: 0;
+  border-left: 1px solid $textColor;
+  margin-top: 20px;
+  padding-left: 3%;
+}
+
+@media (max-width: 767px) {
+  .recipe-basics {
+    width: 100%;
+    float: none;
+    border-bottom: 1px solid $textColor;
+    padding-bottom: 15px;
+  }
+  .ingredients-instructions {
+    margin-left: 0;
+    border-left: 0;
+    padding-left: 0;
+  }
 }

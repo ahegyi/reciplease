@@ -16,13 +16,15 @@
       <% # columns every N recipes %>
       <% if (index) % 8 == 0 %>
         <div class="span3">
-      <% end %>
           <ul class="recipes">
+      <% end %>
+
             <li>
-              <b><%= link_to recipe.name, recipe %></b>
+              <%= link_to recipe.name, recipe %>
             </li>
-          </ul>
+
       <% if (index - 7) % 8 == 0 || (index + 1) == @recipes.size %>
+          </ul>
         </div>
       <% end %>
 

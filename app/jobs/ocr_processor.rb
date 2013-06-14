@@ -26,7 +26,7 @@ class OCRProcessor
 
       # Update the model
       recipe.ocr_raw_text = txt
-      recipe.source = "Created from #{recipe.document.sanitized_file.filename}"
+      recipe.source = "Uploaded from image"
       recipe.ocr_processed = true
 
       recipe.save!
