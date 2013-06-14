@@ -1,6 +1,12 @@
-<h3>Recently Created Recipes</h3>
-<% if @recipes.empty? %>
-  <p>None! Save a recipe or two.</p>
-<% else %>
-  <p><%= @recipes.map(&:name).join(", ") %></p>
-<% end %>
+<div class="hero">
+  <h1>Welcome to Reciplease.</h1>
+</div>
+
+<div class="recent-recipes">
+  <h3>Recently Created Recipes</h3>
+  <% if @recipes.empty? %>
+    <p>None! Save a recipe or two.</p>
+  <% else %>
+    <p><%= @recipes.map(&:name).join(", ") %></p>
+  <% end %>
+</div>
